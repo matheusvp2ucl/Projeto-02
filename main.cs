@@ -5,7 +5,7 @@ class MainClass {
   public static void Main (string[] args) {
     // Codigo Principal
     Console.Clear();
-
+    
     // Instacia a Loja e Carrega a lista de Prdutos a Venda
     Loja mercado = new Loja( "Extrabom" );
     mercado.CarregaListaDeProdutos();
