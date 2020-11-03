@@ -5,9 +5,9 @@ class MainClass {
   public static void Main (string[] args) {
     // Codigo Principal
     Console.Clear();
-    
+
     // Instacia a Loja e Carrega a lista de Prdutos a Venda
-    Loja mercado = new Loja( "Extrabom" );
+    Loja mercado = new Loja( "Petz" );
     mercado.CarregaListaDeProdutos();
 
     // Pede as informações do cliente
@@ -26,6 +26,7 @@ class MainClass {
     // Instacia o cliente com suas respectivas informações
     Cliente cliente = new Cliente( nomeCliente, nascimentoCliente, cpfCliente, enderecoCliente );
 
+
     // Instacio o Carrinho adicionando o Cliente
     Carrinho carrinho = new Carrinho( cliente );
 
@@ -42,8 +43,11 @@ class MainClass {
 
       if( mercado.VerificaEstoque( codProduto, qtdProduto ) ){
         Produtos prod = mercado.PegaProduto( codProduto );
-        prod.QuantidadeProduto = qtdProduto;
-        carrinho.AdicionaItemCarrinho( prod );
+        string nomeProd  = prod.NomeProduto;
+        double valorProd = prod.ValorProduto;
+        double qtdProd   = qtdProduto;
+        Produtos novoAdd = new Produtos( nomeProd, valorProd, qtdProd );
+        carrinho.AdicionaItemCarrinho( novoAdd );
         Thread.Sleep(250);
       }else{
         mercado.AvisoEstoque();
@@ -65,10 +69,15 @@ class MainClass {
 
     Console.Clear();
 
+    // Pede informações do Pagamento !
     Console.Write("Informe a forma de Pagamento: ");
     string pagProduto = Console.ReadLine();
     carrinho.FormaPagamento = pagProduto;
 
+    // Atualiza o estoque de acordo com itens do carrinho !
+    mercado.AtualizaEstoque(carrinho);
+
+    // Mostra as informações finais !
     mercado.MostrarCupomNaoFiscal( carrinho );
     
   }
