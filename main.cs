@@ -26,8 +26,6 @@ class MainClass {
     // Instacia o cliente com suas respectivas informações
     Cliente cliente = new Cliente( nomeCliente, nascimentoCliente, cpfCliente, enderecoCliente );
 
-    Cliente cliente = new Cliente( "Matheus Oliveira", "12/01/1998", "147.564.234.80", "Rua Nova Almeida" );
-
     // Instacio o Carrinho adicionando o Cliente
     Carrinho carrinho = new Carrinho( cliente );
 
