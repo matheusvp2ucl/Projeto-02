@@ -64,7 +64,7 @@ class Loja{
 
   public void Carregamento(string strBase){
     Console.Clear();
-    for( int x=0; x<3; x++ ){
+    for( int x=0; x<2; x++ ){
       Thread.Sleep(500);
       string loadBase = " ";
       for( int i=0; i<4; i++ ){
@@ -115,6 +115,15 @@ class Loja{
 
   public void AtualizaEstoque( Carrinho carrinho ){
     // Função para atualizar o estoque da lista de Produtos
+    this.Carregamento("Atualizando Estoque");
+    List<Produtos> CarroCompras = carrinho.CarrinhoItens;
+    foreach( Produtos compra in CarroCompras  ){
+      foreach( Produtos prod in ListaDeProdutos ){
+        if( compra.NomeProduto == prod.NomeProduto ){
+          prod.QuantidadeProduto = prod.QuantidadeProduto - compra.QuantidadeProduto;
+        }
+      }
+    }
   }
   
   public bool VerificaEstoque( int posi, double quantidade ){
